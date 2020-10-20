@@ -1,2 +1,23 @@
 include ':app'
+include ':common-presentation'
+include ':common-data'
+include ':common-domain'
+
 rootProject.name = "My Picture"
+rootProject.children.each { project ->
+
+    if (project.name.endsWith('presentation')) {
+        setupDir(project, 'presentation')
+    } else if (project.name.endsWith('data')) {
+        setupDir(project, 'data')
+    } else if (project.name.endsWith('domain')) {
+        setupDir(project, 'domain')
+    }
+}
+
+private void setupDir(ProjectDescriptor project, String parentDir) {
+    String projectDirName = "$parentDir/$project.name"
+    project.projectDir = new File(settingsDir, projectDirName)
+    assert project.projectDir.isDirectory()
+    assert project.buildFile.isFile()
+}
