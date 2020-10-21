@@ -11,6 +11,6 @@
 
     <fragment
         android:id="@+id/editor"
-        android:name="ru.anutakay.mypicture.common.presentation.editor.EditorFragment"
+        android:name="ru.anutakay.mypicture.presentation.editor.EditorFragment"
         android:label="EditorFragment"></fragment>
 </navigation>

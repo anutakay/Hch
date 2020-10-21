@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.anutakay.mypicture.common.presentation" />
+<manifest package="ru.anutakay.mypicture.presentation" />
