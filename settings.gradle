@@ -1,7 +1,10 @@
 include ':app'
 include ':common-presentation'
-include ':common-data'
 include ':common-domain'
+include ':common-data'
+include ':editor-presentation'
+include ':editor-domain'
+include ':editor-data'
 
 rootProject.name = "My Picture"
 rootProject.children.each { project ->

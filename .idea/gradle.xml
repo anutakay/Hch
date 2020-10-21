@@ -14,8 +14,11 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/data/common-data" />
+            <option value="$PROJECT_DIR$/data/editor-data" />
             <option value="$PROJECT_DIR$/domain/common-domain" />
+            <option value="$PROJECT_DIR$/domain/editor-domain" />
             <option value="$PROJECT_DIR$/presentation/common-presentation" />
+            <option value="$PROJECT_DIR$/presentation/editor-presentation" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
