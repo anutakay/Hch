@@ -39,6 +39,13 @@ dependencies {
     kapt 'com.google.dagger:dagger-android-processor:2.26'
     kapt 'com.google.dagger:dagger-compiler:2.26'
 
+    implementation project(':common-domain')
+    implementation project(':common-data')
+    implementation project(':common-presentation')
+    implementation project(':editor-domain')
+    implementation project(':editor-data')
+    implementation project(':editor-presentation')
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

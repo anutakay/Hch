@@ -2,10 +2,15 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/picture">
+    app:startDestination="@id/editor">
 
-    <fragment android:id="@+id/picture"
+    <fragment
+        android:id="@+id/picture"
         android:name="ru.anutakay.mypicture.presentation.ui.picture.PictureFragment"
-        android:label="PictureFragment">
-    </fragment>
+        android:label="PictureFragment"></fragment>
+
+    <fragment
+        android:id="@+id/editor"
+        android:name="ru.anutakay.mypicture.common.presentation.editor.EditorFragment"
+        android:label="EditorFragment"></fragment>
 </navigation>
