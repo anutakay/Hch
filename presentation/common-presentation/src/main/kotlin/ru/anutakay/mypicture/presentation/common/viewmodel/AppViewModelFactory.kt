@@ -1,4 +1,4 @@
-package ru.anutakay.mypicture.di.viewmodel
+package ru.anutakay.mypicture.presentation.common.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import ru.anutakay.mypicture.App
 import ru.anutakay.mypicture.R
-import ru.anutakay.mypicture.di.viewmodel.AppViewModelFactory
+import ru.anutakay.mypicture.presentation.common.viewmodel.AppViewModelFactory
 import javax.inject.Inject
 
 class PictureFragment : Fragment() {
