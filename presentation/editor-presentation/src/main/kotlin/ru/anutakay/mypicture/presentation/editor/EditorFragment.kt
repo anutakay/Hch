@@ -23,5 +23,6 @@ class EditorFragment : BaseFragment() {
 
     private fun handlePercentage(percentage: Int) {
         percentage_label.text = percentage.toString()
+        seek_bar.progress = percentage
     }
 }
