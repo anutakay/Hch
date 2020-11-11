@@ -1,4 +1,4 @@
-package ru.anutakay.mypicture.di
+package ru.anutakay.mypicture.di.viewmodel
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

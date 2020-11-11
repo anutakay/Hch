@@ -1,20 +1,15 @@
 package ru.anutakay.mypicture
 
-import android.app.Application
-import ru.anutakay.mypicture.di.AppComponent
-import ru.anutakay.mypicture.di.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
+import ru.anutakay.mypicture.di.app.AppModule
+import ru.anutakay.mypicture.di.app.DaggerAppComponent
 
-class App : Application() {
+class App : DaggerApplication() {
 
-    override fun onCreate() {
-        super.onCreate()
-        component = DaggerAppComponent.builder()
-            .withApplication(this)
-            .build()
+    private val applicationInjector by lazy {
+        DaggerAppComponent.builder().setAppModule(AppModule(this)).create(this)
     }
 
-    companion object {
-        @JvmStatic
-        lateinit var component: AppComponent
-    }
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> = applicationInjector
 }
