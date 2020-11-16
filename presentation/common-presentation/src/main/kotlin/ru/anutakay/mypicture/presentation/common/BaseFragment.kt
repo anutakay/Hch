@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Flowable
 import javax.inject.Inject
@@ -31,9 +32,12 @@ abstract class BaseFragment : Fragment() {
         super.onAttach(context)
     }
 
-    inline fun <reified T : ViewModel> viewModel(factory: ViewModelProvider.Factory): T {
-        return ViewModelProvider(this, factory)[T::class.java]
+    inline fun <reified T : ViewModel> viewModel(factory: ViewModelProvider.Factory, body: T.() -> Unit): T {
+        val vm = ViewModelProvider(this, factory)[T::class.java]
+        vm.body()
+        return vm
     }
+
 
     protected fun <T> Flowable<T>.observe(o: (T) -> Unit) {
         RxLifecycleHandler(this@BaseFragment, this, o)

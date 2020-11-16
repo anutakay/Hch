@@ -5,9 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import ru.anutakay.mypicture.di.viewmodel.AppViewModelFactory
-import ru.anutakay.mypicture.di.viewmodel.ViewModelKey
-import ru.anutakay.mypicture.presentation.editor.fmvvm.EditorViewModel
+import ru.anutakay.mypicture.presentation.editor.rmvvm.EditorViewModel
 import ru.anutakay.mypicture.presentation.ui.picture.PictureViewModel
 
 @Module
