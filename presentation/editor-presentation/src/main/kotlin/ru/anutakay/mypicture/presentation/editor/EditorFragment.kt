@@ -33,14 +33,14 @@ class EditorFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         seek_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                viewModel.actionStream.onNext(SetPercentageAction(p1))
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                viewModel.actionStream.onNext(SetPercentageAction(progress, fromUser))
             }
 
-            override fun onStartTrackingTouch(p0: SeekBar?) {
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
             }
 
-            override fun onStopTrackingTouch(p0: SeekBar?) {
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
             }
         })
     }

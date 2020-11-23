@@ -17,9 +17,12 @@ class EditorViewModel @Inject constructor() : BaseViewModel() {
 
     init {
         actionStream.filterTo(SetPercentageAction::class.java)
+            .filter { it.fromUser }
             .toFlowable(BackpressureStrategy.LATEST)
-            .subscribe {
-                viewState.onNext(viewState.value!!.copy(percentage = it.percentage))
+            .subscribe { action ->
+                viewState.value?.let {
+                    viewState.onNext(it.copy(percentage = action.percentage))
+                }
             }
             .track()
     }

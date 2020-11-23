@@ -4,4 +4,4 @@ import ru.anutakay.mypicture.presentation.common.Action
 
 sealed class EditorAction : Action
 
-class SetPercentageAction(val percentage: Int) : EditorAction()
+class SetPercentageAction(val percentage: Int, val fromUser: Boolean) : EditorAction()
