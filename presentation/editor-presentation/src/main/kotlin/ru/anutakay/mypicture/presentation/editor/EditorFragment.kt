@@ -19,7 +19,7 @@ class EditorFragment : BaseFragment() {
 
         viewModel = viewModel(viewModelFactory) {
             viewState().observe { state ->
-                state.percentage.let { handlePercentage(it) }
+                state.percentage.let(::handlePercentage)
             }
         }
     }
