@@ -3,10 +3,12 @@ package ru.anutakay.mypicture.presentation.editor
 import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
+import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.editor.*
 import ru.anutakay.mypicture.presentation.common.BaseFragment
 import ru.anutakay.mypicture.presentation.editor.rmvvm.EditorViewModel
 import ru.anutakay.mypicture.presentation.editor.rmvvm.SetPercentageAction
+
 
 class EditorFragment : BaseFragment() {
 
@@ -25,6 +27,20 @@ class EditorFragment : BaseFragment() {
     private fun handlePercentage(percentage: Int) {
         percentage_label.text = percentage.toString()
         seek_bar.progress = percentage
+
+        with(colored_square) {
+            layoutParams = (layoutParams as ConstraintLayout.LayoutParams).apply {
+                matchConstraintPercentWidth = rescale(percentage)
+            }
+        }
+    }
+
+    private fun rescale(percentage: Int): Float {
+        val value = when (percentage) {
+            0 -> 1f
+            else -> percentage.toFloat()
+        }
+        return value / 100
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

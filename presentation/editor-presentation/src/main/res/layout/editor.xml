@@ -20,6 +20,7 @@
         android:id="@+id/square"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/aluminum"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,14 +32,14 @@
             android:id="@+id/colored_square"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#000000"
-            android:backgroundTint="@android:color/holo_red_light"
+            android:background="@drawable/circle"
+            android:backgroundTint="@color/rose_gold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.3" />
+            tools:layout_constraintWidth_percent="0.3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <SeekBar
