@@ -18,9 +18,7 @@ class EditorFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
 
         viewModel = viewModel(viewModelFactory) {
-            viewState().observe { state ->
-                state.percentage.let(::handlePercentage)
-            }
+            viewState().observe { state -> state.percentage.let(::handlePercentage) }
         }
     }
 
