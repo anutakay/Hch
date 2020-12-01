@@ -6,6 +6,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 import ru.anutakay.mypicture.App
 import ru.anutakay.mypicture.di.viewmodel.ViewModelModule
 import ru.anutakay.mypicture.presentation.editor.di.EditorFragmentModule
+import ru.anutakay.mypicture.presentation.timer.di.TimerFragmentModule
 import javax.inject.Singleton
 
 @Singleton
@@ -15,7 +16,8 @@ import javax.inject.Singleton
         AppModule::class,
         MainActivityModule::class,
         ViewModelModule::class,
-        EditorFragmentModule::class
+        EditorFragmentModule::class,
+        TimerFragmentModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

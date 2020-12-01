@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -7,7 +7,6 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "ru.anutakay.mypicture"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -15,43 +14,22 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
 }
 
 dependencies {
     kapt 'com.google.dagger:dagger-android-processor:2.26'
     kapt 'com.google.dagger:dagger-compiler:2.26'
 
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'android.arch.navigation:navigation-fragment:1.0.0'
 
     implementation 'com.google.dagger:dagger:2.27'
     implementation 'com.google.dagger:dagger-android-support:2.26'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
 
-    implementation project(':common-data')
     implementation project(':common-domain')
     implementation project(':common-presentation')
-    implementation project(':editor-data')
-    implementation project(':editor-domain')
-    implementation project(':editor-presentation')
-    implementation project(':timer-data')
     implementation project(':timer-domain')
-    implementation project(':timer-presentation')
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
