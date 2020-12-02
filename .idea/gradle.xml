@@ -15,13 +15,13 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/data/common-data" />
             <option value="$PROJECT_DIR$/data/editor-data" />
-            <option value="$PROJECT_DIR$/data/timer-data" />
+            <option value="$PROJECT_DIR$/data/login-data" />
             <option value="$PROJECT_DIR$/domain/common-domain" />
             <option value="$PROJECT_DIR$/domain/editor-domain" />
-            <option value="$PROJECT_DIR$/domain/timer-domain" />
+            <option value="$PROJECT_DIR$/domain/login-domain" />
             <option value="$PROJECT_DIR$/presentation/common-presentation" />
             <option value="$PROJECT_DIR$/presentation/editor-presentation" />
-            <option value="$PROJECT_DIR$/presentation/timer-presentation" />
+            <option value="$PROJECT_DIR$/presentation/login-presentation" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

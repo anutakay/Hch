@@ -6,7 +6,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 import ru.anutakay.hch.App
 import ru.anutakay.hch.di.viewmodel.ViewModelModule
 import ru.anutakay.hch.presentation.editor.di.EditorFragmentModule
-import ru.anutakay.hch.presentation.timer.di.TimerFragmentModule
+import ru.anutakay.hch.presentation.login.di.LoginFragmentModule
 import javax.inject.Singleton
 
 @Singleton
@@ -17,7 +17,7 @@ import javax.inject.Singleton
         MainActivityModule::class,
         ViewModelModule::class,
         EditorFragmentModule::class,
-        TimerFragmentModule::class
+        LoginFragmentModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

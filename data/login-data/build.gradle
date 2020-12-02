@@ -16,5 +16,5 @@ android {
 dependencies {
     implementation project(':common-domain')
     implementation project(':common-data')
-    implementation project(':timer-domain')
+    implementation project(':login-domain')
 }

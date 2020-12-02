@@ -36,7 +36,7 @@ android {
 
         implementation project(':common-domain')
         implementation project(':common-presentation')
-        implementation project(':timer-domain')
+        implementation project(':login-domain')
     }
 }
 

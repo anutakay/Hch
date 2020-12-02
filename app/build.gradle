@@ -47,9 +47,9 @@ dependencies {
     implementation project(':editor-data')
     implementation project(':editor-domain')
     implementation project(':editor-presentation')
-    implementation project(':timer-data')
-    implementation project(':timer-domain')
-    implementation project(':timer-presentation')
+    implementation project(':login-data')
+    implementation project(':login-domain')
+    implementation project(':login-presentation')
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -5,9 +5,9 @@ include ':common-data'
 include ':editor-presentation'
 include ':editor-domain'
 include ':editor-data'
-include ':timer-presentation'
-include ':timer-domain'
-include ':timer-data'
+include ':login-presentation'
+include ':login-domain'
+include ':login-data'
 
 rootProject.name = "My Picture"
 rootProject.children.each { project ->
