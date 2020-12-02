@@ -6,16 +6,16 @@
 
     <fragment
         android:id="@+id/picture"
-        android:name="ru.anutakay.mypicture.presentation.ui.picture.PictureFragment"
+        android:name="ru.anutakay.hch.presentation.ui.picture.PictureFragment"
         android:label="PictureFragment" />
 
     <fragment
         android:id="@+id/editor"
-        android:name="ru.anutakay.mypicture.presentation.editor.EditorFragment"
+        android:name="ru.anutakay.hch.presentation.editor.EditorFragment"
         android:label="EditorFragment" />
 
     <fragment
         android:id="@+id/timer"
-        android:name="ru.anutakay.mypicture.presentation.timer.TimerFragment"
+        android:name="ru.anutakay.hch.presentation.timer.TimerFragment"
         android:label="TimerFragment" />
 </navigation>
