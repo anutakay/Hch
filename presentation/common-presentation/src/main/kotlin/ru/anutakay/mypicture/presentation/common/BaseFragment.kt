@@ -13,7 +13,6 @@ import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Flowable
 import javax.inject.Inject
 
-
 abstract class BaseFragment : Fragment() {
 
     @Inject
@@ -37,7 +36,6 @@ abstract class BaseFragment : Fragment() {
         vm.body()
         return vm
     }
-
 
     protected fun <T> Flowable<T>.observe(o: (T) -> Unit) {
         RxLifecycleHandler(this@BaseFragment, this, o)

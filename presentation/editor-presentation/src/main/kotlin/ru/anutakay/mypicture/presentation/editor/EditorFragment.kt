@@ -9,7 +9,6 @@ import ru.anutakay.mypicture.presentation.common.BaseFragment
 import ru.anutakay.mypicture.presentation.editor.rmvvm.EditorViewModel
 import ru.anutakay.mypicture.presentation.editor.rmvvm.SetPercentageAction
 
-
 class EditorFragment : BaseFragment() {
 
     override fun layoutId(): Int = R.layout.editor

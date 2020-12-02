@@ -2,6 +2,7 @@ package ru.anutakay.mypicture.presentation.editor.rmvvm
 
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.processors.BehaviorProcessor
 import ru.anutakay.mypicture.presentation.common.BaseViewModel
 import ru.anutakay.mypicture.presentation.common.extention.filterTo
@@ -19,6 +20,7 @@ class EditorViewModel @Inject constructor() : BaseViewModel() {
         actionStream.filterTo(SetPercentageAction::class.java)
             .filter { it.fromUser }
             .toFlowable(BackpressureStrategy.LATEST)
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe { action ->
                 with(viewState) {
                     value?.copy(percentage = action.percentage).apply { onNext(this) }
