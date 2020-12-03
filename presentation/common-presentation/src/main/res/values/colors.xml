@@ -2,4 +2,8 @@
 <resources>
     <color name="aluminum">#d6d6d6</color>
     <color name="rose_gold">#b76e79</color>
+
+    <color name="chinese_white">#E0E0E0</color>
+    <color name="melon">#FBB8AC</color>
+    <color name="unbleached_silk">#FEDBD0</color>
 </resources>
