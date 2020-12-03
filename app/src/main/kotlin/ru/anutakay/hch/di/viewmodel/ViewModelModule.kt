@@ -6,6 +6,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.anutakay.hch.presentation.editor.rmvvm.EditorViewModel
+import ru.anutakay.hch.presentation.login.rmvvm.LoginViewModel
 import ru.anutakay.hch.presentation.ui.picture.PictureViewModel
 
 @Module
@@ -23,4 +24,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(EditorViewModel::class)
     abstract fun bindsEditorViewModel(viewModel: EditorViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    abstract fun bindsLoginViewModel(viewModel: LoginViewModel): ViewModel
 }
