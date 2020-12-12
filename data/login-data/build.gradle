@@ -8,13 +8,20 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 29
+    }
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+    dependencies {
+        implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
+
+        implementation project(':common-domain')
+        implementation project(':common-data')
+        implementation project(':login-domain')
     }
 }
 
-dependencies {
-    implementation project(':common-domain')
-    implementation project(':common-data')
-    implementation project(':login-domain')
-}
