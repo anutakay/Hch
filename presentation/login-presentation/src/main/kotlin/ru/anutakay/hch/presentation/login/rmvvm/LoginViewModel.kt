@@ -1,34 +1,40 @@
 package ru.anutakay.hch.presentation.login.rmvvm
 
-import android.util.Log
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.processors.BehaviorProcessor
 import io.reactivex.processors.PublishProcessor
+import io.reactivex.schedulers.Schedulers
+import ru.anutakay.hch.domain.common.ErrorState
+import ru.anutakay.hch.domain.common.LoadingState
+import ru.anutakay.hch.domain.login.usecases.Login
 import ru.anutakay.hch.presentation.common.BaseViewModel
 import ru.anutakay.hch.presentation.common.di.NavigatorFactory
 import ru.anutakay.hch.presentation.common.extention.filterTo
 import ru.anutakay.hch.presentation.common.navigator.Navigator
-import ru.anutakay.hch.presentation.common.navigator.SuccessLoginNavigator
+import ru.anutakay.hch.presentation.login.R
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
+    private val login: Login,
     private val navigatorFactory: NavigatorFactory
 ) : BaseViewModel() {
 
     private val navigateViewState = PublishProcessor.create<Navigator>()
     private val viewState by lazy {
         val processor = BehaviorProcessor.create<LoginViewState>()
-        processor.onNext(LoginViewState())
+        processor.onNext(LoginViewState(username = "", password = "", loading = false))
         processor
     }
 
     init {
         actionStream.filterTo(NextClickedAction::class.java)
             .throttleFirst(1, TimeUnit.SECONDS)
-            .subscribe(::nextClicked)
+            .toFlowable(BackpressureStrategy.LATEST)
+            .flatMap(::nextClicked)
+            .subscribe(viewState::onNext)
             .track()
 
         actionStream.filterTo(UsernameInputUpdatedAction::class.java)
@@ -45,19 +51,42 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun usernameInputUpdated(action: UsernameInputUpdatedAction) {
-        Log.d("LoginViewModel", "username: ${action.username}")
         viewState.value?.copy(username = action.username).apply { viewState.onNext(this) }
     }
 
     private fun passwordInputUpdated(action: PasswordInputUpdatedAction) {
-        Log.d("LoginViewModel", "password: ${action.password}")
         viewState.value?.copy(password = action.password).apply { viewState.onNext(this) }
     }
 
-    private fun nextClicked(action: NextClickedAction) {
-        Log.d("LoginViewModel", "next: ${viewState.value?.username}|${viewState.value?.password}")
-        val navigator = navigatorFactory.create(SuccessLoginNavigator::class.java)
-        navigateViewState.onNext(navigator)
+    private fun nextClicked(
+        @Suppress("UNUSED_PARAMETER") action: NextClickedAction
+    ): Flowable<LoginViewState> {
+        //val navigator = navigatorFactory.create(SuccessLoginNavigator::class.java)
+        //navigateViewState.onNext(navigator)
+
+        val resultState = login(
+            viewState.value?.username ?: "",
+            viewState.value?.password ?: ""
+        )
+
+        return resultState.stateStream
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .map {
+                when (it) {
+                    is LoadingState -> viewState.value!!.copy(
+                        loading = it.loading, errorMessage = 0, error = null
+                    )
+                    is ErrorState -> {
+                        it.throwable.printStackTrace()
+                        viewState.value!!.copy(
+                            loading = false,
+                            errorMessage = R.string.error_happened,
+                            error = it.throwable
+                        )
+                    }
+                }
+            }
     }
 
     fun viewState(): Flowable<LoginViewState> = viewState.hide()

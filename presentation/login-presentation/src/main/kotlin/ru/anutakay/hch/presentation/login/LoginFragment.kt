@@ -28,6 +28,7 @@ class LoginFragment : BaseFragment() {
             viewState().observe { state ->
                 state.username.let(::handleUsername)
                 state.password.let(::handlePassword)
+                state.loading.let(::handleLoading)
             }
             navigateViewState().observe(::handleNavigate)
         }
@@ -73,6 +74,13 @@ class LoginFragment : BaseFragment() {
             setText(password)
             setSelection(password?.length ?: 0)
             addTextChangedListener(passwordTextWatcher)
+        }
+    }
+
+    private fun handleLoading(loading: Boolean) {
+        progress_circular.visibility = when (loading) {
+            true -> View.VISIBLE
+            else -> View.GONE
         }
     }
 

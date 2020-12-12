@@ -8,6 +8,6 @@ import javax.inject.Inject
 class SuccessLoginNavigatorImpl @Inject constructor() : SuccessLoginNavigator {
 
     override fun launchFragment(nav: NavController) {
-        nav.navigate(LoginFragmentDirections.actionSuccessLogin())
+        nav.navigate(LoginFragmentDirections.actionLoginFragmentToEditorFragment())
     }
 }
