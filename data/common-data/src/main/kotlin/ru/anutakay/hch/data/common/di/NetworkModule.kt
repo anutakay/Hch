@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-    private val baseUrl: String = "http://localhost:8080/api/v1/"
+    private val baseUrl: String = "http://192.168.43.101:8080/api/v1/"
 
     @Singleton
     @Provides

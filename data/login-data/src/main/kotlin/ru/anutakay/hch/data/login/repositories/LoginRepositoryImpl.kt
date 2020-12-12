@@ -8,13 +8,19 @@ import ru.anutakay.hch.domain.common.ResultState
 import ru.anutakay.hch.domain.common.State
 import ru.anutakay.hch.domain.login.repositories.LoginRepository
 
-class LoginRepositoryImpl(val apiDataSource: LoginApiDataSource) : LoginRepository {
+class LoginRepositoryImpl(private val apiDataSource: LoginApiDataSource) : LoginRepository {
     override fun login(): ResultState {
-        return ResultState(Flowable.create<State>({ emitter ->
+        val login = apiDataSource.login()
+            .toFlowable()
+            .map { LoadingState(true) as State }
+
+       /* val stateStream = Flowable.create<State>({ emitter ->
             emitter.onNext(LoadingState(true))
             Thread.sleep(1000)
             emitter.onNext(LoadingState(false))
             emitter.onComplete()
-        }, BackpressureStrategy.LATEST))
+        }, BackpressureStrategy.LATEST)*/
+
+        return ResultState(login)
     }
 }
