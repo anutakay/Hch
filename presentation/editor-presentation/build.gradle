@@ -18,6 +18,15 @@ android {
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     dependencies {
         kapt 'com.google.dagger:dagger-android-processor:2.26'
         kapt 'com.google.dagger:dagger-compiler:2.26'

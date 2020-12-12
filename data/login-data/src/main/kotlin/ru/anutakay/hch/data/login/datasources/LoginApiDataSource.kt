@@ -4,7 +4,5 @@ import io.reactivex.Single
 
 interface LoginApiDataSource {
 
-    fun login(): Single<String> {
-        return Single.just("ffffffffffff")
-    }
+    fun login(): Single<String>
 }

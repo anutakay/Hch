@@ -2,6 +2,7 @@ package ru.anutakay.hch.di.features
 
 import dagger.Module
 import dagger.Provides
+import ru.anutakay.hch.data.common.api.Api
 import ru.anutakay.hch.data.login.datasources.LoginApiDataSource
 import ru.anutakay.hch.data.login.datasources.LoginApiDataSourceImpl
 import ru.anutakay.hch.data.login.repositories.LoginRepositoryImpl
@@ -12,8 +13,8 @@ import ru.anutakay.hch.domain.login.usecases.Login
 class LoginModule {
 
     @Provides
-    fun provideLoginApiDataSource(): LoginApiDataSource {
-        return LoginApiDataSourceImpl()
+    fun provideLoginApiDataSource(api: Api): LoginApiDataSource {
+        return LoginApiDataSourceImpl(api)
     }
 
     @Provides
