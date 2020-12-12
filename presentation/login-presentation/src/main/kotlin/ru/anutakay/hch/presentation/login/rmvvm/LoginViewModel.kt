@@ -10,6 +10,7 @@ import ru.anutakay.hch.presentation.common.BaseViewModel
 import ru.anutakay.hch.presentation.common.di.NavigatorFactory
 import ru.anutakay.hch.presentation.common.extention.filterTo
 import ru.anutakay.hch.presentation.common.navigator.Navigator
+import ru.anutakay.hch.presentation.common.navigator.SuccessLoginNavigator
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -55,6 +56,8 @@ class LoginViewModel @Inject constructor(
 
     private fun nextClicked(action: NextClickedAction) {
         Log.d("LoginViewModel", "next: ${viewState.value?.username}|${viewState.value?.password}")
+        val navigator = navigatorFactory.create(SuccessLoginNavigator::class.java)
+        navigateViewState.onNext(navigator)
     }
 
     fun viewState(): Flowable<LoginViewState> = viewState.hide()

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import kotlinx.android.synthetic.main.login.*
 import ru.anutakay.hch.presentation.common.BaseFragment
 import ru.anutakay.hch.presentation.common.navigator.Navigator
@@ -76,7 +77,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun handleNavigate(navigator: Navigator) {
-       // navigator.launchFragment(findNavController())
+        navigator.launchFragment(findNavController(this))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
