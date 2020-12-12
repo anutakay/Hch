@@ -2,20 +2,24 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/login">
+    app:startDestination="@id/login_fragment">
 
     <fragment
-        android:id="@+id/picture"
+        android:id="@+id/picture_fragment"
         android:name="ru.anutakay.hch.presentation.ui.picture.PictureFragment"
         android:label="PictureFragment" />
 
     <fragment
-        android:id="@+id/editor"
+        android:id="@+id/editor_fragment"
         android:name="ru.anutakay.hch.presentation.editor.EditorFragment"
         android:label="EditorFragment" />
 
     <fragment
-        android:id="@+id/login"
+        android:id="@+id/login_fragment"
         android:name="ru.anutakay.hch.presentation.login.LoginFragment"
-        android:label="TimerFragment" />
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_success_login"
+            app:destination="@id/editor_fragment" />
+    </fragment>
 </navigation>

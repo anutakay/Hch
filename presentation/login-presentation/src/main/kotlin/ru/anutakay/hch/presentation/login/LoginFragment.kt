@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.View
 import kotlinx.android.synthetic.main.login.*
 import ru.anutakay.hch.presentation.common.BaseFragment
+import ru.anutakay.hch.presentation.common.navigator.Navigator
 import ru.anutakay.hch.presentation.login.rmvvm.LoginViewModel
 import ru.anutakay.hch.presentation.login.rmvvm.NextClickedAction
 import ru.anutakay.hch.presentation.login.rmvvm.PasswordInputUpdatedAction
@@ -27,6 +28,7 @@ class LoginFragment : BaseFragment() {
                 state.username.let(::handleUsername)
                 state.password.let(::handlePassword)
             }
+            navigateViewState().observe(::handleNavigate)
         }
         usernameTextWatcher = object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
@@ -73,13 +75,15 @@ class LoginFragment : BaseFragment() {
         }
     }
 
+    private fun handleNavigate(navigator: Navigator) {
+       // navigator.launchFragment(findNavController())
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         username_edit_text.addTextChangedListener(usernameTextWatcher)
         password_edit_text.addTextChangedListener(passwordTextWatcher)
-        next_button.setOnClickListener {
-            viewModel.actionStream.onNext(NextClickedAction)
-        }
+        next_button.setOnClickListener { viewModel.actionStream.onNext(NextClickedAction) }
     }
 }

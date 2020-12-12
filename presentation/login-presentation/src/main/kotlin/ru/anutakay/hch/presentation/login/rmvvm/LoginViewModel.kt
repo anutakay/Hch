@@ -5,13 +5,19 @@ import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.processors.BehaviorProcessor
+import io.reactivex.processors.PublishProcessor
 import ru.anutakay.hch.presentation.common.BaseViewModel
+import ru.anutakay.hch.presentation.common.di.NavigatorFactory
 import ru.anutakay.hch.presentation.common.extention.filterTo
+import ru.anutakay.hch.presentation.common.navigator.Navigator
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor() : BaseViewModel() {
+class LoginViewModel @Inject constructor(
+    private val navigatorFactory: NavigatorFactory
+) : BaseViewModel() {
 
+    private val navigateViewState = PublishProcessor.create<Navigator>()
     private val viewState by lazy {
         val processor = BehaviorProcessor.create<LoginViewState>()
         processor.onNext(LoginViewState())
@@ -52,4 +58,6 @@ class LoginViewModel @Inject constructor() : BaseViewModel() {
     }
 
     fun viewState(): Flowable<LoginViewState> = viewState.hide()
+
+    fun navigateViewState(): Flowable<Navigator> = navigateViewState.hide()
 }

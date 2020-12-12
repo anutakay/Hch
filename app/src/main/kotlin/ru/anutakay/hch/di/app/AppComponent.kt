@@ -5,6 +5,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import ru.anutakay.hch.App
 import ru.anutakay.hch.di.viewmodel.ViewModelModule
+import ru.anutakay.hch.di.navigator.NavigatorModule
 import ru.anutakay.hch.presentation.editor.di.EditorFragmentModule
 import ru.anutakay.hch.presentation.login.di.LoginFragmentModule
 import javax.inject.Singleton
@@ -16,6 +17,7 @@ import javax.inject.Singleton
         AppModule::class,
         MainActivityModule::class,
         ViewModelModule::class,
+        NavigatorModule::class,
         EditorFragmentModule::class,
         LoginFragmentModule::class
     ]
