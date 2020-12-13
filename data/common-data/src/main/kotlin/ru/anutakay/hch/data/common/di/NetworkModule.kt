@@ -50,7 +50,7 @@ class NetworkModule {
     fun provideRetrofit(interceptors: ArrayList<Interceptor>): Retrofit {
 
         val clientBuilder = OkHttpClient.Builder()
-        if (!interceptors.isEmpty()) {
+        if (interceptors.isNotEmpty()) {
             interceptors.forEach { interceptor ->
                 clientBuilder.addInterceptor(interceptor)
             }
