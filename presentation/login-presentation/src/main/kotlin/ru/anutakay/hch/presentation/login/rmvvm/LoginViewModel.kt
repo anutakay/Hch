@@ -1,5 +1,6 @@
 package ru.anutakay.hch.presentation.login.rmvvm
 
+import android.util.Log
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -8,6 +9,7 @@ import io.reactivex.processors.PublishProcessor
 import io.reactivex.schedulers.Schedulers
 import ru.anutakay.hch.domain.common.ErrorState
 import ru.anutakay.hch.domain.common.LoadingState
+import ru.anutakay.hch.domain.common.ResultState
 import ru.anutakay.hch.domain.login.usecases.Login
 import ru.anutakay.hch.presentation.common.BaseViewModel
 import ru.anutakay.hch.presentation.common.di.NavigatorFactory
@@ -34,7 +36,16 @@ class LoginViewModel @Inject constructor(
             .throttleFirst(1, TimeUnit.SECONDS)
             .toFlowable(BackpressureStrategy.LATEST)
             .flatMap(::nextClicked)
-            .subscribe(viewState::onNext)
+            .subscribe(viewState::onNext) { t: Throwable? ->
+                viewState.onNext(
+                    viewState.value!!.copy(
+                        loading = false,
+                        errorMessage = R.string.error_happened,
+                        error = t
+                    )
+                )
+                Log.d("LoginRepository", "error handled")
+            }
             .track()
 
         actionStream.filterTo(UsernameInputUpdatedAction::class.java)
@@ -64,7 +75,7 @@ class LoginViewModel @Inject constructor(
         //val navigator = navigatorFactory.create(SuccessLoginNavigator::class.java)
         //navigateViewState.onNext(navigator)
 
-        val resultState = login(
+        val resultState: ResultState = login(
             viewState.value?.username ?: "",
             viewState.value?.password ?: ""
         )
@@ -75,7 +86,7 @@ class LoginViewModel @Inject constructor(
             .map {
                 when (it) {
                     is LoadingState -> viewState.value!!.copy(
-                        loading = it.loading, errorMessage = 0, error = null
+                        loading = it.loading
                     )
                     is ErrorState -> {
                         it.throwable.printStackTrace()

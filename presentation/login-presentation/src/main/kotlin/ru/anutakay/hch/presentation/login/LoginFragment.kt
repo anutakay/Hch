@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.annotation.StringRes
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import kotlinx.android.synthetic.main.login.*
 import ru.anutakay.hch.presentation.common.BaseFragment
@@ -29,6 +30,7 @@ class LoginFragment : BaseFragment() {
                 state.username.let(::handleUsername)
                 state.password.let(::handlePassword)
                 state.loading.let(::handleLoading)
+                state.errorMessage.let { handleErrorMessage(it) }
             }
             navigateViewState().observe(::handleNavigate)
         }
@@ -81,6 +83,21 @@ class LoginFragment : BaseFragment() {
         progress_circular.visibility = when (loading) {
             true -> View.VISIBLE
             else -> View.GONE
+        }
+    }
+
+    private fun handleErrorMessage(@StringRes message: Int) {
+        with(error_text) {
+            when (message) {
+                0 -> {
+                    text = null
+                    visibility = View.GONE
+                }
+                else -> {
+                    setText(message)
+                    visibility = View.VISIBLE
+                }
+            }
         }
     }
 

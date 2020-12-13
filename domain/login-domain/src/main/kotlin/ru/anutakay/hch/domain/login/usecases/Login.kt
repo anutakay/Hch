@@ -6,7 +6,6 @@ import ru.anutakay.hch.domain.login.repositories.LoginRepository
 class Login(
     private val repository: LoginRepository
 ) {
-    operator fun invoke(username: String, password: String): ResultState {
-        return repository.login()
-    }
+    operator fun invoke(username: String, password: String): ResultState =
+        repository.login(username, password)
 }
