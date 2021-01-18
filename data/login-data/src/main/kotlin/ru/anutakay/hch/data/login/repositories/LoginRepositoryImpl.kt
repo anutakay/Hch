@@ -1,6 +1,5 @@
 package ru.anutakay.hch.data.login.repositories
 
-import android.util.Log
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.processors.PublishProcessor
 import io.reactivex.schedulers.Schedulers
@@ -23,12 +22,10 @@ class LoginRepositoryImpl(private val apiDataSource: LoginApiDataSource) : Login
                 apiDataSource.login(LoginEntity(name, password))
                     .subscribeOn(Schedulers.io())
                     .subscribe({
-                        Log.d("LoginRepository", "onNext: $it")
                         processor.onNext(LoadingState(false))
                         processor.onNext(SuccessState(it))
                         processor.onComplete()
                     }) {
-                        Log.d("LoginRepository", "onError: $it")
                         processor.onNext(LoadingState(false))
                         processor.onNext(ErrorState(it))
                     })

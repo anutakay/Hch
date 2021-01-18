@@ -38,6 +38,9 @@ android {
         implementation project(':common-domain')
         implementation project(':common-data')
         implementation project(':login-domain')
+
+        testImplementation 'junit:junit:4.13'
+        testImplementation 'org.mockito:mockito-core:3.5.10'
     }
 }
 
